@@ -48,8 +48,11 @@ Gra gotowa do rozpoczęcia!
 
 📸 Prezentacja
 
-(Zrzuty ekranu i/lub nagranie wideo zostaną dodane w kolejnym commicie)
-
+![game_beginning+console.png](docs/game_beginning%2Bconsole.png)
+![game_chat.png](docs/game_chat.png)
+![game_finish.png](docs/game_finish.png)
+![game_initial_state.png](docs/game_initial_state.png)
+![game_mid.png](docs/game_mid.png)
 📜 Licencja
 
 Projekt udostępniony na licencji MIT – do dowolnego użytku i modyfikacji.
