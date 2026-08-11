@@ -1,0 +1,16 @@
+# Build output
+/build/
+/dist/
+/out/
+*.class
+
+# IDE-specific files
+/.idea/
+*.iml
+/nbproject/private/
+
+# Runtime files
+/chat_history.txt
+
+# Operating system
+.DS_Store

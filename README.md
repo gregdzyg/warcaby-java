@@ -1,64 +1,80 @@
+# Online Checkers — Java Swing
 
-# Warcaby Online (Java Swing)
+A two-player checkers game built in Java as a university programming project. Two desktop clients connect to a shared TCP server, exchange game state in real time and can communicate through an in-game chat.
 
-Dwuosobowa gra w warcaby działająca w trybie online, w całości napisana w **Javie** z wykorzystaniem biblioteki **Swing** do interfejsu graficznego.  
-Gra umożliwia rozgrywkę w czasie rzeczywistym pomiędzy dwoma klientami, opartą o **architekturę klient-serwer**.
+The project demonstrates object-oriented programming, desktop UI development, socket communication, multithreading and implementation of game rules without an external game engine.
 
----
+## Features
 
-## 🎯 Funkcje
-- **Rozgrywka online dla dwóch graczy** przez gniazda TCP.
-- **Graficzny interfejs użytkownika** oparty na Swing.
-- **Pełna logika gry**:
-    - Sprawdzanie poprawności ruchów.
-    - Wielokrotne bicie w jednej turze.
-    - Promocja na damkę.
-    - Wymuszanie bicia.
-- **Architektura klient-serwer**:
-    - Oddzielny serwer obsługujący połączenia i synchronizację stanu gry.
-    - Oddzielna aplikacja kliencka dla każdego gracza.
+- two-player gameplay over TCP sockets,
+- Java Swing desktop interface,
+- central message relay between clients,
+- move validation and mandatory captures,
+- multiple captures in one turn,
+- king promotion and movement,
+- win detection,
+- in-game chat saved locally to `chat_history.txt`.
 
----
+## Tech stack
 
-## 🛠️ Technologie
-- **Java 17**
-- **Java Swing** – GUI
-- **Java Sockets** – komunikacja sieciowa
-- **Programowanie obiektowe (OOP)**
+- Java 17
+- Java Swing and AWT
+- TCP sockets
+- Java threads
+- Ant / NetBeans project
 
----
+## Project structure
 
-## 📂 Struktura projektu
+```text
 src/
-├── client/ # Logika klienta + GUI
-├── server/ # Logika serwera
-├── model/ # Zasady gry, plansza, pionki
-└── META-INF/ # Plik manifestu
+├── client/   Swing UI and client-server communication
+├── model/    board state, pieces and game rules
+└── server/   socket server and connected-client handling
+```
 
----
+The server relays state and chat messages between two connected clients. Each client renders its own Swing interface and uses the shared text protocol to update the local game state.
 
-## 🚀 Jak uruchomić
-1. **Skompiluj projekt** w IntelliJ IDEA (netBeans) lub przy pomocy `javac`.
-2. **Uruchom serwer**:
-   ```bash
-   java server.Server
-Uruchom dwóch klientów (każdy w osobnym procesie):
-java client.GameClient
-Gra gotowa do rozpoczęcia!
+## Running the game
 
-📸 Prezentacja
+The easiest option is to open the project in NetBeans with JDK 17.
 
-![game_beginning+console.png](docs/game_beginning%2Bconsole.png)
-![game_chat.png](docs/game_chat.png)
-![game_finish.png](docs/game_finish.png)
-![game_initial_state.png](docs/game_initial_state.png)
-![game_mid.png](docs/game_mid.png)
-📜 Licencja
+1. Run `server.Server`.
+2. Run `client.GameClient` twice.
+3. The first client receives white pieces and starts the game.
 
-Projekt udostępniony na licencji MIT – do dowolnego użytku i modyfikacji.
+The server listens on `localhost:8888`, so both clients run on the same machine by default.
 
-👤 Autor
+You can also compile it from a terminal:
 
-Projekt stworzony przez Grzegorza Dzyga w ramach zajęć programowania w Javie na studiach.
+```bash
+mkdir -p build/classes
+javac --release 17 -encoding UTF-8 -d build/classes $(find src -name "*.java")
+```
 
+Then start the server and two clients in separate terminals:
 
+```bash
+java -cp build/classes server.Server
+java -cp build/classes client.GameClient
+java -cp build/classes client.GameClient
+```
+
+## Screenshots
+
+| Game board | Multiplayer chat |
+| --- | --- |
+| ![Checkers game in progress](docs/game_mid.png) | ![Checkers game chat](docs/game_chat.png) |
+
+![Finished checkers game](docs/game_finish.png)
+
+## Project status
+
+This is an earlier learning project and intentionally remains a compact Swing application rather than being rewritten with a newer UI or networking framework. Current limitations include local-host configuration, support for exactly two players and no automated test suite. These are natural next steps rather than hidden production features.
+
+## License
+
+This project is available under the [MIT License](LICENSE).
+
+## Author
+
+Grzegorz Dżyg
